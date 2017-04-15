@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Notifier</title>
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <style>
+    ul {
+        display:block;
+        background:#45619D;
+        list-style:none;
+        margin:0;
+        padding:12px 10px;
+        height:41px;
+    }
+    ul li {
+        float:left;
+        font:13px helvetica;
+        font-weight:bold;
+        margin:3px 0;
+    }
+    ul li a {
+        color:#FFF;
+        text-decoration:none;
+        padding:6px 15px;
+        cursor:pointer;
+    }
+    ul li a:hover {
+        background:#425B90;
+        text-decoration:none;
+        cursor:pointer;
+    }
+    </style>
+    </head>
+
+    <body>
+     <ul>
+            <li><a href="/notify/home">Home</a></li>
+            <li><a href="/notify/subscribe">Subscribe/Unsubscribe</a></li>
+            <li><a href="/notify/updatestocks">Update Stocks</a></li>
+            <li><a href="/notify/">Logout</a></li>
+         </ul>
+
+        <div class="container">
+        Update
+        <table class="table responsive">
+        {% for t in sub%}
+        <tr>
+        <form class="form-signin" action="/notify/updatevalue/" method="POST">
+         <td>{{t}}</td>
+         <input name="stock" type="text" value='{{t}}' style="display:none">
+         <td><input value={{t.price}} name="value"/></td>
+         <td><button class="btn btn-lg btn-primary" id="login2" type="submit">Update</button></td>
+         </form>
+         {% endfor %}
+         </tr>
+         </table>
+    </body>
+</html>
